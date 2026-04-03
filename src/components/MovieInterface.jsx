@@ -1,7 +1,7 @@
 //componets/BollywoodMovies.jsx
 import { useEffect, useMemo, useState } from "react"
 import "../assets/css/bollywoodMovies.css"
-import { bollywoodMoviesData } from "../utils/bollywoodMoviesdata";
+import { bollywoodMoviesData } from "../utils/bollywoodMoviesData";
 import MovieCard from "./MovieCard";
 import FavouriteMovies from "./FavouriteMovies";
 const MovieInterface = () => {
