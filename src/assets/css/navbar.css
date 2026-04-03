@@ -1,0 +1,9 @@
+/*assets/css/navbar.css*/
+nav{
+    background-color: #ce1919;
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    align-items: center;
+}

@@ -1,0 +1,90 @@
+/*assets/css/portfolio.css*/
+body.dark .Portfolio{
+    background-color: #242424;
+    color: #fff;
+}
+body.light .Portfolio{
+    background-color: #fff;
+    color: #333;
+}
+.Portfolio{
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    width: 100%;
+    color: #000;
+}
+.intro{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 2rem;
+}
+.profile-img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
+    float: left;
+}
+.name{
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.role{
+    margin-top: 0.1rem;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.about-me{
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-weight: 500;
+}
+.skill-heading{
+    opacity: 0.5;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: block;
+}
+.skill-container{
+    display: flex;
+    gap: 0.3rem 0.6rem;
+    flex-wrap: wrap;
+}
+.skill{
+    background-color: #e6eef8;
+    color: #000;
+    padding: 0.3rem 0.7rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px 10px;
+}
+
+footer button{
+    background-color: #2663eb;
+    border: none;
+    outline: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+#likes{
+    cursor: pointer;
+}
+#likes.solid{
+    color: red
+}
