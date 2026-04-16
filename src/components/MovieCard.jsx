@@ -4,7 +4,11 @@ import "../assets/css/movieCard.css"
 import { faHeart as regular} from '@fortawesome/free-regular-svg-icons'
 import { faHeart as solid} from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { FavMovieContext } from "../utils/FavMovieSelector";
 const MovieCard = (props) => {
+  const {selectedMovie,setSelectedMovie} = useContext(FavMovieContext);
+
   const getRatingCategory = (rating) => {
     if (rating >= 8) return "excellent";
     if (rating >= 6.5) return "good";
@@ -27,15 +31,28 @@ const MovieCard = (props) => {
   let category = getRatingCategory(props.rating);
   let style = getColor(category);
   const [favourite, setFavourite] = useState(false);
-  const handleFavourite = ()=>{
-    const newFav = !favourite
-    setFavourite(newFav);
-    favourite ? sessionStorage.removeItem('movie_'+props.title) : sessionStorage.setItem('movie_'+props.title, "true");
-  }
+  const handleFavourite = () => {
+    setFavourite(prev => {
+      const updated = !prev;
+
+      if (updated)
+        sessionStorage.setItem('movie_' + props.title, "true");
+      else
+        sessionStorage.removeItem('movie_' + props.title);
+
+      return updated;
+    });
+
+    setSelectedMovie(prev => [...prev, props.title]);
+  };
   useEffect(()=>{
+    debugger;
     if(props.favourite.includes(props.title))
-        setFavourite(true);
-  },[])
+        setFavourite(prev => {
+          const updated = !prev;
+          return updated;
+        });
+  },[selectedMovie])
   return (
     <div className={`movie-card ${category}`}>
       <span className="likes"><FontAwesomeIcon icon={favourite ? solid : regular} onClick={handleFavourite} id="movie-likes" className={favourite ? "solid" : "regular"}/></span>

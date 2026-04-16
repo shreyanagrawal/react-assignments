@@ -4,6 +4,8 @@ import "../assets/css/bollywoodMovies.css"
 import { bollywoodMoviesData } from "../utils/bollywoodMoviesData";
 import MovieCard from "./MovieCard";
 import FavouriteMovies from "./FavouriteMovies";
+import { useContext } from "react";
+import { FavMovieContext } from "../utils/FavMovieSelector";
 const MovieInterface = () => {
   const [loading, setLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState('All');
@@ -13,6 +15,7 @@ const MovieInterface = () => {
   const [filteredMovies, setFilteredMovies] = useState(bollywoodMoviesData);
   const [favMovies,setFavMovies] = useState([]);
   const [showFavourite, setShowFavourite] = useState(false)
+  const {selectedMovie,setSelectedMovie} = useContext(FavMovieContext)
 
   useEffect(()=>{
     setInterval(()=>{
@@ -21,6 +24,7 @@ const MovieInterface = () => {
   },[])
 
   useEffect(()=>{
+    debugger;
     const favMovie = [];
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
@@ -28,7 +32,7 @@ const MovieInterface = () => {
         favMovie.push(key.split('_')[1]);
     }
     setFavMovies(favMovie);
-  },[])
+  },[selectedMovie])
 
   const sortedAndFilteredMovies = useMemo(()=>{
     const filtered = movies.filter(movie => {

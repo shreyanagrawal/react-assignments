@@ -4,9 +4,12 @@ import { faStar, faHeart as solid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as regular } from '@fortawesome/free-regular-svg-icons'
 import { useEffect, useState } from 'react';
 import "../assets/css/favouriteMovies.css"
+import { useContext } from 'react';
+import { FavMovieContext } from '../utils/FavMovieSelector';
 
 const FavouriteMovies = (props) => {
   const [favouriteMovie, setFavouriteMovie] = useState(false);
+  const {selectedMovie,setSelectedMovie} = useContext(FavMovieContext)
   useEffect(()=>{
       if(props.favourite.includes(props.title))
           setFavouriteMovie(true);
@@ -34,11 +37,17 @@ const FavouriteMovies = (props) => {
 
     let category = getRatingCategory(props.rating);
     let style = getColor(category);
+    const handleFavourite = (title) => {
+        debugger;
+        setSelectedMovie(prev => prev.filter((movie) => movie !== title));        
+        sessionStorage.removeItem('movie_'+title)
+    }
   return (
     
         props.favourite.includes(props.title)? (
                 <>
                     <div className="favourite">
+                        <span className="cross" style={{position: "absolute", right:"10px", cursor:"pointer"}} onClick={()=>handleFavourite(props.title)}>x</span>
                         <span className="fav-title">{props.title}</span>
                         <span className="fav-genre">{props.genre}</span>
                         <div className="fav-info">

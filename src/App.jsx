@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Portfolio from './components/Portfolio'
 import { ThemeDataContext } from './utils/ThemeSwitcher';
+import { FavMovieContext } from './utils/FavMovieSelector';
 import { faMoon } from '@fortawesome/free-solid-svg-icons'; 
 import ThemeSwitcher from './components/ThemeSwitcher';
 import MovieInterface from './components/MovieInterface';
@@ -11,16 +12,20 @@ import MovieInterface from './components/MovieInterface';
 function App() {
   const [theme,setTheme] = useState('Dark');
   const [icon,setIcon] = useState(faMoon)
+  const [selectedMovie,setSelectedMovie] = useState([]);
   return (  
     <>
       <ThemeDataContext.Provider value={{theme,setTheme, icon,setIcon}}>
-        <div style={{position:"sticky", top: "0px"}}>
+        <div style={{position:"sticky", top: "0px", zIndex: 9}}>
           <Navbar />
           <ThemeSwitcher />
         </div>
         
         <Portfolio />
-        <MovieInterface />
+        <FavMovieContext.Provider value={{selectedMovie,setSelectedMovie}}>
+          <MovieInterface />
+        </FavMovieContext.Provider>
+        
       </ThemeDataContext.Provider>
       
     </>
