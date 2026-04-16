@@ -38,7 +38,6 @@ const FavouriteMovies = (props) => {
     let category = getRatingCategory(props.rating);
     let style = getColor(category);
     const handleFavourite = (title) => {
-        debugger;
         setSelectedMovie(prev => prev.filter((movie) => movie !== title));        
         sessionStorage.removeItem('movie_'+title)
     }
