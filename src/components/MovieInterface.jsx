@@ -24,7 +24,6 @@ const MovieInterface = () => {
   },[])
 
   useEffect(()=>{
-    debugger;
     const favMovie = [];
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
