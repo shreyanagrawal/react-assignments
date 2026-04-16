@@ -46,7 +46,6 @@ const MovieCard = (props) => {
     setSelectedMovie(prev => [...prev, props.title]);
   };
   useEffect(()=>{
-    debugger;
     if(props.favourite.includes(props.title))
         setFavourite(prev => {
           const updated = !prev;
